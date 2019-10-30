@@ -1,0 +1,28 @@
+FROM node:12.13
+LABEL maintainer lucas.pelos@gmail.com
+
+# Install the Angular CLI & NativeScript CLI
+ENV ANGULAR_CLI_VERSION  ~8.3.15
+
+RUN npm install -g --unsafe-perm @angular/cli@${ANGULAR_CLI_VERSION}
+
+# Configure app dir and volume
+ENV APP_DIR /app
+
+VOLUME ${APP_DIR}
+WORKDIR ${APP_DIR}
+
+# Add app dependencies to PATH
+ENV PATH ${PATH}:${APP_DIR}/node_modules/.bin
+
+# dev server port
+EXPOSE 4200
+
+# build analyser server port
+EXPOSE 8888
+
+# SSR server port
+EXPOSE 4000
+
+# node inspect port
+EXPOSE 9229
