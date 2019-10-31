@@ -1,10 +1,12 @@
+import { ArticleImage } from './article-image.model';
+
 interface ArticleAttributes {
   author?: string;
   body?: string[];
   date?: string;
   heading?: string;
   id?: string;
-  mainImage?: any; // TODO: fix type
+  mainImage?: ArticleImage;
 }
 
 export class Article implements ArticleAttributes {
@@ -13,7 +15,7 @@ export class Article implements ArticleAttributes {
   date: string;
   heading: string;
   id: string;
-  mainImage: any; // TODO: fix type
+  mainImage: ArticleImage;
 
   constructor({
     body = [],

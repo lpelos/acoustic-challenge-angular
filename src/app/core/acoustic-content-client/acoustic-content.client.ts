@@ -9,9 +9,9 @@ interface JSONResponse {
 
 @Injectable()
 export class AcousticContentClient {
-  private readonly apiBaseUrl = 'https://my12.digitalexperience.ibm.com/api';
+  private readonly apiScope = 'api';
   private readonly apiVersion = 'v1';
-  private readonly contentPath = '/:contentHubId/delivery/:apiVersion/content/:contentId';
+  private readonly baseUrl = 'https://my12.digitalexperience.ibm.com';
 
   constructor(
     protected http: HttpClient,
@@ -22,16 +22,33 @@ export class AcousticContentClient {
     return this.http.get(url);
   }
 
-  private contentItemUrl(contentHubId: string, contentId: string): string {
-    const path = this.contentPath
-      .replace(':contentHubId', contentHubId)
-      .replace(':apiVersion', this.apiVersion)
-      .replace(':contentId', contentId);
-
-    return this.url(path);
+  contentItemUrl(contentHubId: string, contentId: string): string {
+    return this.apiUrl([contentHubId, 'delivery', this.apiVersion, 'content', contentId]);
   }
 
-  private url(path = '/'): string {
-    return [this.apiBaseUrl, path].join('/');
+  resourceUrl(resourceUrl: string): string {
+    return this.url([resourceUrl]);
+  }
+
+  private apiUrl(components: string[] = []): string {
+    return this.url([this.apiScope, ...components]);
+  }
+
+  private joinUrl(components: string[]): string {
+    return components.filter(Boolean).map((c, i) => {
+      return i === 0 ? this.stripAfterSlash(c) : this.stripTrailingSlashes(c);
+    }).join('/');
+  }
+
+  private stripAfterSlash(str: string): string {
+    return str.replace(/\/$/, '');
+  }
+
+  private stripTrailingSlashes(str: string): string {
+    return this.stripAfterSlash(str).replace(/^\//, '');
+  }
+
+  private url(components: string[] = []): string {
+    return this.joinUrl([this.baseUrl, ...components]);
   }
 }

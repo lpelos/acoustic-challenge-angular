@@ -53,8 +53,23 @@
       </p>
     </header>
 
-    <!-- FIXME: use article.mainImage -->
-    <img alt="lorem pixel" class="img-fluid mb-3" src="http://lorempixel.com/1920/400" />
+    <figure *ngIf="article.mainImage" class="figure">
+      <img
+        [alt]="article.mainImage.caption"
+        class="figure-img img-fluid rounded"
+        [src]="article.mainImage.url"
+      />
+
+      <figcaption *ngIf="!!article.mainImage.caption" class="figure-caption">
+        {{ article.mainImage.caption }}
+      </figcaption>
+
+      <footer *ngIf="!!article.mainImage.credit">
+        <small class="text-secondary">
+          Credit: <em>{{ article.mainImage.credit }}</em>
+        </small>
+      </footer>
+    </figure>
 
     <main *ngIf="!!article.body">
       <section *ngFor="let item of article.body" [innerHTML]="item"></section>
