@@ -34,10 +34,9 @@ export class ArticleParamsFormComponent implements OnInit {
   }
 
   private buildForm(): void {
-    // TODO: intialize form with empty values
     this.form = this.fb.group({
-      contentHubId: ['859f2008-a40a-4b92-afd0-24bb44d10124', AppValidators.present],
-      contentId: ['a9eabd0d-9b1d-4801-b686-0815860d9521', AppValidators.present],
+      contentHubId: ['', AppValidators.present],
+      contentId: ['', AppValidators.present],
     });
   }
 }
