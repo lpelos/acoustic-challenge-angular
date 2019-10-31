@@ -16,8 +16,11 @@ export class AcousticContentClient {
   ) { }
 
   contentItem(apiKey: string, contentId: string): Observable<JSONResponse> {
-    const url = this.url(apiKey, `content/${contentId}`);
-    return this.http.get(url);
+    return this.http.get(this.contentItemUrl(apiKey, contentId));
+  }
+
+  contentItemUrl(apiKey: string, contentId: string): string {
+    return this.url(apiKey, `content/${contentId}`);
   }
 
   private url(apiKey: string, path = '/'): string {

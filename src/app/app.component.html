@@ -1,9 +1,17 @@
 <div class="container">
-  <nav class="navbar navbar-light">
+  <nav class="navbar navbar-light mb-5">
     <a class="navbar-brand" href="https://acoustic.co/" target="_blank" title="Go to Acoustic website">
       <img alt="Acoustic" src="/assets/images/logo.png">
     </a>
   </nav>
 
-  <app-article [params]="articleParams"></app-article>
+  <app-article-params-form
+    *ngIf="!articleParams"
+    (formSubmit)="onSubmitArticleParams($event)"
+  ></app-article-params-form>
+
+  <app-article
+    *ngIf="!!articleParams"
+    [params]="articleParams"
+  ></app-article>
 </div>

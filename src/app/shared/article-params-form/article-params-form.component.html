@@ -1,0 +1,38 @@
+<form *ngIf="!!form" class="card mx-auto" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <main class="card-body">
+    <p>
+      Please provide the <em>API Key</em> and <em>Content ID</em> of the
+      content your want to fetch and render.
+    </p>
+
+    <small class="text-secondary">TODO: instructions on how to find those informations {{ exampleUrl }}</small>
+
+    <div class="form-group mt-3">
+      <label for="apiKeyInput">API Key*</label>
+
+      <input
+        class="form-control"
+        formControlName="apiKey"
+        id="apiKeyInput"
+        placeholder="779181bc-40f8-4e49-bc76-7f820485e3ac"
+        type="text"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="contentIdInput">Content Id*</label>
+
+      <input
+        class="form-control"
+        formControlName="contentId"
+        id="contentIdInput"
+        placeholder="fa0e68fd-deb8-4539-806a-83c8b97e692a"
+        type="text"
+      />
+    </div>
+  </main>
+
+  <footer class="card-footer text-right">
+    <button class="btn btn-primary" type="submit">Fetch Article</button>
+  </footer>
+</form>
