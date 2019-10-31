@@ -58,7 +58,10 @@
     <!-- FIXME: use article.mainImage -->
     <img alt="lorem pixel" class="img-fluid mb-3" src="http://lorempixel.com/1920/400" />
 
-    <main *ngIf="!!article.body" [innerHTML]="article.body"></main>
+    <main *ngIf="!!article.body">
+      <section *ngFor="let item of article.body" [innerHTML]="item"></section>
+    </main>
+
     <p *ngIf="!article.body" class="text-secondary">[No content body]</p>
   </article>
 

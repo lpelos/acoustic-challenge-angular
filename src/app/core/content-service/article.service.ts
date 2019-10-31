@@ -29,7 +29,7 @@ export class ArticleService {
 
     return new Article({
       author: author.value || '',
-      body: body.values[0] || '', // FIXME: manage multiple values
+      body: body.values || [],
       date: date.value || null,
       heading: heading.value || '',
       id,
