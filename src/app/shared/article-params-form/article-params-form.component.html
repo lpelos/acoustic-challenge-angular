@@ -1,4 +1,8 @@
 <form *ngIf="!!form" class="card mx-auto" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <header class="card-header">
+    <h1 class="card-title">Acoustic Content Renderer</h1>
+  </header>
+
   <main class="card-body">
     <p>
       Please provide the <em>API Key</em> and <em>Content ID</em> of the
@@ -14,7 +18,7 @@
         class="form-control"
         formControlName="apiKey"
         id="apiKeyInput"
-        placeholder="779181bc-40f8-4e49-bc76-7f820485e3ac"
+        placeholder="Ex: 779181bc-40f8-4e49-bc76-7f820485e3ac"
         type="text"
       />
     </div>
@@ -26,7 +30,7 @@
         class="form-control"
         formControlName="contentId"
         id="contentIdInput"
-        placeholder="fa0e68fd-deb8-4539-806a-83c8b97e692a"
+        placeholder="Ex: fa0e68fd-deb8-4539-806a-83c8b97e692a"
         type="text"
       />
     </div>

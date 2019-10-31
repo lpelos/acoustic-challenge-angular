@@ -32,4 +32,6 @@
     <main *ngIf="!!article.body" [innerHTML]="article.body"></main>
     <p *ngIf="!article.body" class="text-secondary">[No content body]</p>
   </article>
+
+  <button class="btn btn-link" type="button" (click)="onClose()">< Go back</button>
 </ng-container>

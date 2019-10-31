@@ -10,6 +10,10 @@ import { ArticleParams } from './core/content-service/article.service';
 export class AppComponent {
   articleParams: ArticleParams;
 
+  onCloseArticle(): void {
+    this.articleParams = null;
+  }
+
   onSubmitArticleParams(params: ArticleParams): void {
     this.articleParams = params;
   }

@@ -13,5 +13,6 @@
   <app-article
     *ngIf="!!articleParams"
     [params]="articleParams"
+    (closeArticle)="onCloseArticle()"
   ></app-article>
 </div>

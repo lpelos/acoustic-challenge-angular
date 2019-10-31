@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -13,6 +13,8 @@ import { ArticleParams, ArticleService } from 'src/app/core/content-service/arti
 })
 export class ArticleComponent implements OnChanges, OnDestroy {
   @Input() params: ArticleParams;
+
+  @Output() closeArticle = new EventEmitter<void>();
 
   article: Article;
   fetchError = false;
@@ -30,6 +32,10 @@ export class ArticleComponent implements OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribe();
+  }
+
+  onClose(): void {
+    this.closeArticle.emit();
   }
 
   private fetchArticle(): void {
@@ -50,11 +56,12 @@ export class ArticleComponent implements OnChanges, OnDestroy {
   }
 
   private handleError(err: any): Observable<null> {
+    // TODO: handle 404 and other types of erros separatly
     this.fetchError = true;
     return of(null);
   }
 
   private unsubscribe(): void {
-    if (this.subscription) { this.unsubscribe(); }
+    if (this.subscription) { this.subscription.unsubscribe(); }
   }
 }
