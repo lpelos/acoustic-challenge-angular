@@ -5,24 +5,5 @@
     </a>
   </nav>
 
-  <article *ngIf="!!article">
-    <header>
-      <h1>{{ article.heading || '[No Heading]' }}</h1>
-
-      <p *ngIf="!!article.author || !!article.date" class="metadata text-secondary">
-        <ng-container *ngIf="!!article.author">
-          By
-          <em class="author">{{ article.author }}</em>
-        </ng-container>
-
-        <!-- TODO: format date -->
-        <span *ngIf="!!article.date" class="date">{{ article.date }}</span>
-      </p>
-    </header>
-
-    <!-- FIXME: use article.mainImage -->
-    <img alt="lorem pixel" class="img-fluid mb-3" src="http://lorempixel.com/1920/400" />
-
-    <main [innerHTML]="article.body"></main>
-  </article>
+  <app-article [params]="articleParams"></app-article>
 </div>

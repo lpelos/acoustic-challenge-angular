@@ -1,0 +1,35 @@
+<p *ngIf="isLoading" class="loading text-center my-5">Fetching article...</p>
+
+<ng-container *ngIf="!isLoading">
+  <div *ngIf="fetchError" class="alert alert-danger" role="alert">
+    <strong>Error:</strong>
+    It wasn't possible to fetch the content from the given
+    <em>API Key</em> and <em>Content ID</em>.
+    Either the given params are invalid or API is currently unavailable. Please
+    double check the article params or try again later.
+  </div>
+
+  <article *ngIf="!fetchError">
+    <header>
+      <h1 [class.text-secondary]="!article.heading">
+        {{ article.heading || '[No Heading]' }}
+      </h1>
+
+      <p *ngIf="!!article.author || !!article.date" class="metadata text-secondary">
+        <ng-container *ngIf="!!article.author">
+          By
+          <em class="author">{{ article.author }}</em>
+        </ng-container>
+
+        <!-- TODO: format date -->
+        <span *ngIf="!!article.date" class="date">{{ article.date }}</span>
+      </p>
+    </header>
+
+    <!-- FIXME: use article.mainImage -->
+    <img alt="lorem pixel" class="img-fluid mb-3" src="http://lorempixel.com/1920/400" />
+
+    <main *ngIf="!!article.body" [innerHTML]="article.body"></main>
+    <p *ngIf="!article.body" class="text-secondary">[No content body]</p>
+  </article>
+</ng-container>

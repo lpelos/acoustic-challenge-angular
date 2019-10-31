@@ -6,13 +6,18 @@ import { map } from 'rxjs/operators';
 import { AcousticContentClient } from '../acoustic-content-client/acoustic-content.client';
 import { Article } from '../models/article.model';
 
+export interface ArticleParams {
+  apiKey: string;
+  contentId: string;
+}
+
 @Injectable()
 export class ArticleService {
   constructor(
     protected client: AcousticContentClient,
   ) { }
 
-  find(apiKey: string, contentId: string): Observable<Article> {
+  find({ apiKey, contentId }: ArticleParams): Observable<Article> {
     return this.client.contentItem(apiKey, contentId).pipe(map(json => this.fromJSON(json)));
   }
 
