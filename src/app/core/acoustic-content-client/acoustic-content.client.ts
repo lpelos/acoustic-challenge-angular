@@ -9,22 +9,29 @@ interface JSONResponse {
 
 @Injectable()
 export class AcousticContentClient {
-  private readonly baseUrl = 'https://my12.digitalexperience.ibm.com/api/:apiKey/delivery/v1';
+  private readonly apiBaseUrl = 'https://my12.digitalexperience.ibm.com/api';
+  private readonly apiVersion = 'v1';
+  private readonly contentPath = '/:contentHubId/delivery/:apiVersion/content/:contentId';
 
   constructor(
     protected http: HttpClient,
   ) { }
 
-  contentItem(apiKey: string, contentId: string): Observable<JSONResponse> {
-    return this.http.get(this.contentItemUrl(apiKey, contentId));
+  contentItem(contentHubId: string, contentId: string): Observable<JSONResponse> {
+    const url = this.contentItemUrl(contentHubId, contentId);
+    return this.http.get(url);
   }
 
-  contentItemUrl(apiKey: string, contentId: string): string {
-    return this.url(apiKey, `content/${contentId}`);
+  private contentItemUrl(contentHubId: string, contentId: string): string {
+    const path = this.contentPath
+      .replace(':contentHubId', contentHubId)
+      .replace(':apiVersion', this.apiVersion)
+      .replace(':contentId', contentId);
+
+    return this.url(path);
   }
 
-  private url(apiKey: string, path = '/'): string {
-    const base = this.baseUrl.replace(':apiKey', apiKey);
-    return [base, path].join('/');
+  private url(path = '/'): string {
+    return [this.apiBaseUrl, path].join('/');
   }
 }

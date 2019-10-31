@@ -7,7 +7,7 @@ import { AcousticContentClient } from '../acoustic-content-client/acoustic-conte
 import { Article } from '../models/article.model';
 
 export interface ArticleParams {
-  apiKey: string;
+  contentHubId: string;
   contentId: string;
 }
 
@@ -17,8 +17,8 @@ export class ArticleService {
     protected client: AcousticContentClient,
   ) { }
 
-  find({ apiKey, contentId }: ArticleParams): Observable<Article> {
-    return this.client.contentItem(apiKey, contentId).pipe(map(json => this.fromJSON(json)));
+  find({ contentHubId, contentId }: ArticleParams): Observable<Article> {
+    return this.client.contentItem(contentHubId, contentId).pipe(map(json => this.fromJSON(json)));
   }
 
   private fromJSON(json: any): Article {

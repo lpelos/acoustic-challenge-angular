@@ -5,26 +5,32 @@
 
   <main class="card-body">
     <p>
-      Please provide the <em>API Key</em> and <em>Content ID</em> of the
-      content your want to fetch and render.
+      Please provide the <em>Content Hub ID</em> and <em>Content ID</em> of the
+      content your want to be rendered.
     </p>
 
-    <small class="text-secondary">TODO: instructions on how to find those informations {{ exampleUrl }}</small>
+    <small class="text-secondary">
+      See
+      <a href="https://developer.ibm.com/customer-engagement/tutorials/getting-started-api-javascript/" target="_blank">
+        Docs
+      </a>
+      on how to get this information.
+    </small>
 
     <div class="form-group mt-3">
-      <label for="apiKeyInput">API Key*</label>
+      <label for="contentHubIdInput">Content Hub ID*</label>
 
       <input
         class="form-control"
-        formControlName="apiKey"
-        id="apiKeyInput"
+        formControlName="contentHubId"
+        id="contentHubIdInput"
         placeholder="Ex: 779181bc-40f8-4e49-bc76-7f820485e3ac"
         type="text"
       />
     </div>
 
     <div class="form-group">
-      <label for="contentIdInput">Content Id*</label>
+      <label for="contentIdInput">Content ID*</label>
 
       <input
         class="form-control"
@@ -37,6 +43,6 @@
   </main>
 
   <footer class="card-footer text-right">
-    <button class="btn btn-primary" type="submit">Fetch Article</button>
+    <button class="btn btn-primary" [disabled]="form.invalid" type="submit">Fetch Article</button>
   </footer>
 </form>

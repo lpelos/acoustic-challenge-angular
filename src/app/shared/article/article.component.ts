@@ -47,9 +47,9 @@ export class ArticleComponent implements OnChanges, OnDestroy {
     this.notFoundError = false;
     this.unexpectedError = false;
 
-    const { apiKey, contentId } = this.params;
+    const { contentHubId, contentId } = this.params;
 
-    this.subscription = this.articleService.find({ apiKey, contentId })
+    this.subscription = this.articleService.find({ contentHubId, contentId })
       .pipe(catchError(err => this.handleError(err)))
       .subscribe(article => {
         if (article) { this.article = article; }
