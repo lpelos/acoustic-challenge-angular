@@ -1,4 +1,4 @@
-<p *ngIf="isLoading" class="loading text-center my-5">Fetching article...</p>
+<p *ngIf="isLoading" class="loading text-center my-5">Loading content...</p>
 
 <ng-container *ngIf="!isLoading">
   <div *ngIf="notFoundError || unexpectedError" class="alert alert-danger" role="alert">
@@ -71,11 +71,11 @@
       </footer>
     </figure>
 
-    <main *ngIf="!!article.body">
+    <main *ngIf="!!article.body && article.body.length > 0">
       <section *ngFor="let item of article.body" [innerHTML]="item"></section>
     </main>
 
-    <p *ngIf="!article.body" class="text-secondary">[No content body]</p>
+    <p *ngIf="!article.body || article.body.length === 0" class="text-secondary">[No content body]</p>
   </article>
 
   <button class="btn btn-link mb-4" type="button" (click)="onClose()">< Go back</button>
