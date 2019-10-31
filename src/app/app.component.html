@@ -1,55 +1,28 @@
 <div class="container">
   <nav class="navbar navbar-light">
-    <a class="navbar-brand" href="#">
-      <img alt="Acoustic" src="/assets/images/logo.png">
+    <a class="navbar-brand" href="https://acoustic.co/">
+      <img alt="Acoustic" src="/assets/images/logo.png" target="_blank">
     </a>
   </nav>
 
-  <article>
-    <h1>Lorem Ipsum</h1>
+  <article *ngIf="!!article">
+    <header>
+      <h1>{{ article.heading || '[No Heading]' }}</h1>
 
+      <p *ngIf="!!article.author || !!article.date" class="metadata text-secondary">
+        <ng-container *ngIf="!!article.author">
+          By
+          <em class="author">{{ article.author }}</em>
+        </ng-container>
+
+        <!-- TODO: format date -->
+        <span *ngIf="!!article.date" class="date">{{ article.date }}</span>
+      </p>
+    </header>
+
+    <!-- FIXME: use article.mainImage -->
     <img alt="lorem pixel" class="img-fluid mb-3" src="http://lorempixel.com/1920/400" />
 
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Sagittis eu volutpat odio facilisis. Cras ornare arcu dui vivamus arcu. Maecenas ultricies mi eget
-      mauris pharetra et ultrices. Sit amet facilisis magna etiam tempor. Turpis egestas sed tempus urna. Posuere morbi
-      leo urna molestie at elementum eu. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Orci
-      dapibus ultrices in iaculis nunc sed augue lacus. Platea dictumst quisque sagittis purus sit amet.
-    </p>
-    <p>
-      Enim tortor at auctor urna nunc id cursus. Tristique senectus et netus et malesuada fames ac. Eleifend donec
-      pretium vulputate sapien nec. Tempor commodo ullamcorper a lacus vestibulum sed arcu non. Rutrum quisque non
-      tellus orci ac auctor augue mauris. Convallis tellus id interdum velit laoreet id donec ultrices. Volutpat
-      blandit aliquam etiam erat velit scelerisque. Vitae tempus quam pellentesque nec nam aliquam sem et tortor.
-      Potenti nullam ac tortor vitae purus faucibus ornare suspendisse. Et odio pellentesque diam volutpat. Lectus
-      proin nibh nisl condimentum id venenatis. Sed pulvinar proin gravida hendrerit lectus a.
-    </p>
-    <p>
-      Vulputate eu scelerisque felis imperdiet proin. In egestas erat imperdiet sed euismod nisi porta. Ipsum dolor sit
-      amet consectetur adipiscing. Dignissim suspendisse in est ante. Suspendisse sed nisi lacus sed viverra tellus in
-      hac. Id cursus metus aliquam eleifend mi. Pellentesque pulvinar pellentesque habitant morbi tristique senectus.
-      Eget egestas purus viverra accumsan in nisl. Ipsum dolor sit amet consectetur adipiscing elit. Nulla pellentesque
-      dignissim enim sit.
-    </p>
-    <p>
-      Nibh cras pulvinar mattis nunc sed blandit libero volutpat. Vitae et leo duis ut. Duis ut diam quam nulla
-      porttitor massa id neque aliquam. Malesuada proin libero nunc consequat. Sit amet volutpat consequat mauris nunc
-      congue. Sodales neque sodales ut etiam sit. Pharetra pharetra massa massa ultricies mi. Maecenas sed enim ut sem
-      viverra aliquet eget sit. Tortor at risus viverra adipiscing at in tellus. Eu mi bibendum neque egestas congue
-      quisque. Bibendum neque egestas congue quisque egestas diam in arcu cursus. Pellentesque nec nam aliquam sem et
-      tortor consequat id porta. Vitae congue mauris rhoncus aenean. Platea dictumst quisque sagittis purus sit amet
-      volutpat consequat mauris. In fermentum et sollicitudin ac orci phasellus egestas tellus. Pellentesque dignissim
-      enim sit amet. Odio ut sem nulla pharetra diam sit amet nisl suscipit. Eu non diam phasellus vestibulum lorem sed
-      risus. Mollis nunc sed id semper.
-    </p>
-    <p>
-      Accumsan tortor posuere ac ut consequat semper viverra. Nisi porta lorem mollis aliquam ut porttitor leo a.
-      Dignissim cras tincidunt lobortis feugiat vivamus at augue eget arcu. Sit amet mauris commodo quis imperdiet
-      massa tincidunt nunc pulvinar. Gravida rutrum quisque non tellus orci ac auctor augue mauris. Faucibus et
-      molestie ac feugiat sed lectus vestibulum mattis. Nisl purus in mollis nunc sed. Lorem ipsum dolor sit amet
-      consectetur adipiscing elit duis tristique. Tortor consequat id porta nibh venenatis cras sed felis eget. Mollis
-      nunc sed id semper risus in. Leo a diam sollicitudin tempor id. Neque viverra justo nec ultrices dui.
-    </p>
+    <main [innerHTML]="article.body"></main>
   </article>
 </div>

@@ -1,10 +1,16 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
+import { AcousticContentClient } from './acoustic-content-client/acoustic-content.client';
+import { ArticleService } from './content-service/article.service';
+
 @NgModule({
   imports: [
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    AcousticContentClient,
+    ArticleService,
+  ],
 })
 export class CoreModule { }
