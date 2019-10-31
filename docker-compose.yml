@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.dev
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./:/app/
+    ports:
+      - 4200:4200
+      - 8888:8888
+    command: >
+      bash -c "
+        npm install &&
+        npm run start"

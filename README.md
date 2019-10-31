@@ -1,27 +1,49 @@
-# AcousticChallengeAngular
+# Acoustic Code Challenge in Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.15.
+This is a code challenge made for [Acoustic](https://acoustic.co/) which
+consists in a SPA application that consumes Acoustic Content APIs and renders
+the content returned using Angular.
 
-## Development server
+To be able to run these projects locally, it's highly recommended that you use
+docker. If you don't have docker installed see:
+https://docs.docker.com/engine/installation.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+If you don't want to use docker for some reason, try and prepare your local
+development environment in accordance to the technologies and versions
+present in the `Dockerfile.dev` and see the how to run them in the
+`docker-compose.yml`.
 
-## Code scaffolding
+## Build Image
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+docker-compose build
+```
+
+## Dev Server
+
+```
+docker-compose up
+```
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+docker-compose run --rm app npm run build
+```
 
-## Running unit tests
+## Tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**TODO** reference: https://github.com/angular/angular-cli/issues/2013#issuecomment-245467961
 
-## Running end-to-end tests
+## Logs
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+docker-compose logs
+```
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Angular
+
+To get help on the Angular CLI use `docker-compose run --rm app ng help` or go check out the
+[Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
