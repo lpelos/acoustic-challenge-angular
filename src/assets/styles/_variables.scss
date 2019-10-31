@@ -1,0 +1,18 @@
+$opacity-primary: 0.87;
+$opacity-secondary: 0.54;
+$opacity-hint: 0.26;
+$opacity-disabled: 0.26;
+$opacity-divider: 0.12;
+
+// Theme
+
+$color-primary: #047A71;
+
+$color-text-primary:   rgba(black, $opacity-primary);
+$color-text-secondary: rgba(black, $opacity-secondary);
+$color-text-disabled:  rgba(black, $opacity-disabled);
+$color-text-hint:      rgba(black, $opacity-hint);
+
+$color-divider: rgba(black, $opacity-divider);
+
+$color-link: rgba($color-primary, $opacity-primary);

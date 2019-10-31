@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'assets/styles/variables';
+@import 'assets/styles/bootstrap-overrides';
+
+a {
+  cursor: pointer;
+}
+
+app-root {
+  &,
+  > ng-component {
+    display: block;
+  }
+}
+
+app-root,
+app-root > ng-component,
+body,
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Exo 2', Helvetica, Arial, sans-serif;;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Neuton', 'Times New Roman', serif;
+}
+
+.text-secondary {
+  color: $color-text-secondary;
+}

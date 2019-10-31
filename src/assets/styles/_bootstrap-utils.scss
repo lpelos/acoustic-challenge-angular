@@ -1,0 +1,11 @@
+@import 'variables';
+
+$enable-responsive-font-sizes: true;
+
+$theme-colors: (
+  primary: $color-primary,
+);
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
