@@ -1,15 +1,44 @@
 <p *ngIf="isLoading" class="loading text-center my-5">Fetching article...</p>
 
 <ng-container *ngIf="!isLoading">
-  <div *ngIf="fetchError" class="alert alert-danger" role="alert">
-    <strong>Error:</strong>
-    It wasn't possible to fetch any content for the given
-    <em>API Key</em> and <em>Content ID</em>.
-    Either the given params are invalid or API is currently unavailable. Please
-    double check the article params or try again later.
+  <div *ngIf="notFoundError || unexpectedError" class="alert alert-danger" role="alert">
+    <h2 class="alert-heading">Error fetching content</h2>
+
+    <ng-container *ngIf="notFoundError">
+      <p>
+        It wasn't possible to fetch any content for the given <em>API Key</em>
+        and <em>Content ID</em>. Please double check the article params and try
+        again.
+      </p>
+
+      <ul class="list-unstyled">
+        <li>
+          <strong>API Key:</strong> {{ params.apiKey || '[none]' }}
+        </li>
+        <li>
+          <strong>Content ID:</strong> {{ params.contentId || '[none]' }}
+        </li>
+      </ul>
+    </ng-container>
+
+    <ng-container *ngIf="unexpectedError">
+      <p>
+        An unexpected error has occured. Please double check the given
+        <em>API Key</em> and try again.
+      </p>
+
+      <p>
+        If the error persist, try again later or contact
+        <a href="mail:lucas.pelos@gmail.com">lucas.pelos@gmail.com</a>.
+      </p>
+
+      <p>
+        <strong>API Key:</strong> {{ params.apiKey || '[none]' }}
+      </p>
+    </ng-container>
   </div>
 
-  <article *ngIf="!fetchError">
+  <article *ngIf="!!article">
     <header>
       <h1 [class.text-secondary]="!article.heading">
         {{ article.heading || '[No Heading]' }}

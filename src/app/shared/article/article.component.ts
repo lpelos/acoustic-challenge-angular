@@ -17,8 +17,9 @@ export class ArticleComponent implements OnChanges, OnDestroy {
   @Output() closeArticle = new EventEmitter<void>();
 
   article: Article;
-  fetchError = false;
   isLoading = false;
+  notFoundError = false;
+  unexpectedError = false;
 
   private subscription: Subscription;
 
@@ -41,9 +42,10 @@ export class ArticleComponent implements OnChanges, OnDestroy {
   private fetchArticle(): void {
     this.unsubscribe();
 
-    this.isLoading = true;
     this.article = null;
-    this.fetchError = false;
+    this.isLoading = true;
+    this.notFoundError = false;
+    this.unexpectedError = false;
 
     const { apiKey, contentId } = this.params;
 
@@ -56,8 +58,14 @@ export class ArticleComponent implements OnChanges, OnDestroy {
   }
 
   private handleError(err: any): Observable<null> {
-    // TODO: handle 404 and other types of erros separatly
-    this.fetchError = true;
+    const status = err && err.status;
+
+    if (status === 404) {
+      this.notFoundError = true;
+    } else {
+      this.unexpectedError = true;
+    }
+
     return of(null);
   }
 
