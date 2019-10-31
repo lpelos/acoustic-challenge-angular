@@ -20,24 +20,8 @@ export class AcousticContentClient {
     return this.http.get(url);
   }
 
-  private join(components: string[]): string {
-    return components.filter(Boolean).map((c, i) => {
-      return i === 0 ? this.stripAfterSlash(c) : this.stripTrailingSlashes(c);
-    }).join('/');
-  }
-
-  private stripAfterSlash(str: string): string {
-    return str.replace(/\/$/, '');
-  }
-
-  private stripTrailingSlashes(str: string): string {
-    return this.stripAfterSlash(str).replace(/^\//, '');
-  }
-
   private url(apiKey: string, path = '/'): string {
-    return this.join([
-      this.baseUrl.replace(':apiKey', apiKey),
-      path,
-    ]);
+    const base = this.baseUrl.replace(':apiKey', apiKey);
+    return [base, path].join('/');
   }
 }
