@@ -45,13 +45,11 @@
       </h1>
 
       <p *ngIf="!!article.author || !!article.date" class="metadata text-secondary">
-        <ng-container *ngIf="!!article.author">
-          By
-          <em class="author">{{ article.author }}</em>
-        </ng-container>
+        <span *ngIf="!!article.author">
+          By <em class="author">{{ article.author }}</em>
+        </span>
 
-        <!-- TODO: format date -->
-        <span *ngIf="!!article.date" class="date">{{ article.date }}</span>
+        <span *ngIf="!!article.date" class="date">{{ article.date | date:'medium' }}</span>
       </p>
     </header>
 
