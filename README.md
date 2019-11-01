@@ -4,6 +4,8 @@ This is a code challenge made for [Acoustic](https://acoustic.co/) which
 consists in a SPA application that consumes Acoustic Content APIs and renders
 the content returned using Angular.
 
+![Demo](https://raw.githubusercontent.com/lpelos/acoustic-challenge-angular/master/src/assets/images/demo.gif)
+
 To be able to run these projects locally, it's highly recommended that you use
 docker. If you don't have docker installed see:
 https://docs.docker.com/engine/installation.
