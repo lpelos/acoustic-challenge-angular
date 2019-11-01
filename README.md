@@ -22,23 +22,47 @@ docker-compose build
 ## Dev Server
 
 ```
-docker-compose up
+$ docker-compose up app
 ```
 
-## Build
+## Build App
 
 ```
-docker-compose run --rm app npm run build
+$ docker-compose run --rm app npm run build
 ```
 
 ## Tests
 
-**TODO** reference: https://github.com/angular/angular-cli/issues/2013#issuecomment-245467961
+### Headless (Docker)
+
+```
+$ docker-compose run --rm app npm run test:headless
+```
+
+### On Chrome (Local)
+
+In order to be able to run the application tests on Chrome you will need to
+have Chrome installed and a local development environment configured.
+
+My suggestion would be [installing nvm](https://github.com/nvm-sh/nvm#installation-and-update)
+and then installing the same versions of `node` and `angular-cli` that are used
+in the applications's `Dockerfile`.
+
+```
+$ nvm install <NODE VESION>
+$ npm i -g @angular/cli@<ANGULAR CLI VERSION>
+```
+
+and then run the test locally.
+
+```
+$ npm run test:chrome
+```
 
 ## Logs
 
 ```
-docker-compose logs
+$ docker-compose logs
 ```
 
 ## Further help
