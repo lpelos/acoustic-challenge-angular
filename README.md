@@ -13,7 +13,7 @@ development environment in accordance to the technologies and versions
 present in the `Dockerfile.dev` and see the how to run them in the
 `docker-compose.yml`.
 
-## Build Image
+## Build Docker Image
 
 ```
 docker-compose build
@@ -27,8 +27,16 @@ $ docker-compose up app
 
 ## Build App
 
+### Dev
+
 ```
 $ docker-compose run --rm app npm run build
+```
+
+### Prod
+
+```
+$ docker-compose run --rm app npm run build:prod
 ```
 
 ## Tests
