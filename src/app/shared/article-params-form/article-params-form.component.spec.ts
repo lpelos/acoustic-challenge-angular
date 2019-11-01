@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArticleParamsFormComponent } from './article-params-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('ArticleParamsFormComponent', () => {
   let component: ArticleParamsFormComponent;
@@ -8,7 +9,8 @@ describe('ArticleParamsFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArticleParamsFormComponent ]
+      imports: [ReactiveFormsModule],
+      declarations: [ArticleParamsFormComponent],
     })
     .compileComponents();
   }));
