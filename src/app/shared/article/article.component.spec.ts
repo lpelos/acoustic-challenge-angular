@@ -88,7 +88,7 @@ describe('ArticleComponent', () => {
       expect(authorDe.nativeElement.textContent.trim()).toBe(mockArticle.author);
 
       const dateDe = fixture.debugElement.query(By.css('.date'));
-      expect(dateDe.nativeElement.textContent.trim()).toBe('Apr 30, 2009, 1:05:00 PM');
+      expect(dateDe.nativeElement.textContent.trim()).toBe('Apr 30, 2009, 4:05:00 PM');
 
       const figureDe = fixture.debugElement.query(By.css('.figure'));
       const { mainImage } = mockArticle;

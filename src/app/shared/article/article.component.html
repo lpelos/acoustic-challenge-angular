@@ -55,7 +55,7 @@
           By <em class="author">{{ article.author }}</em>
         </span>
 
-        <span *ngIf="!!article.date" class="date">{{ article.date | date:'medium' }}</span>
+        <span *ngIf="!!article.date" class="date">{{ article.date | date:'medium':'UTC+3' }}</span>
       </p>
     </header>
 
