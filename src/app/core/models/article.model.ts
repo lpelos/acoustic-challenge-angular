@@ -3,7 +3,7 @@ import { ArticleImage } from './article-image.model';
 interface ArticleAttributes {
   author?: string;
   body?: string[];
-  date?: string;
+  date?: Date;
   heading?: string;
   id?: string;
   mainImage?: ArticleImage;
@@ -12,7 +12,7 @@ interface ArticleAttributes {
 export class Article implements ArticleAttributes {
   author: string;
   body: string[];
-  date: string;
+  date: Date;
   heading: string;
   id: string;
   mainImage: ArticleImage;

@@ -3,8 +3,9 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleCha
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { AcousticContentNotFoundError } from 'src/app/core/acoustic-content-client/acoustic-content.client';
 import { Article } from 'src/app/core/models/article.model';
-import { ArticleParams, ArticleService } from 'src/app/core/content-service/article.service';
+import { ArticleParams, ArticleService } from 'src/app/core/article-service/article.service';
 
 @Component({
   selector: 'app-article',
@@ -47,6 +48,8 @@ export class ArticleComponent implements OnChanges, OnDestroy {
     this.notFoundError = false;
     this.unexpectedError = false;
 
+    if (!this.params) { return; }
+
     const { contentHubId, contentId } = this.params;
 
     this.subscription = this.articleService.find({ contentHubId, contentId })
@@ -58,9 +61,7 @@ export class ArticleComponent implements OnChanges, OnDestroy {
   }
 
   private handleError(err: any): Observable<null> {
-    const status = err && err.status;
-
-    if (status === 404) {
+    if (err instanceof AcousticContentNotFoundError) {
       this.notFoundError = true;
     } else {
       this.unexpectedError = true;

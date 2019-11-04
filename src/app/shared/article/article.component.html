@@ -1,7 +1,13 @@
 <p *ngIf="isLoading" class="loading text-center my-5">Loading content...</p>
 
 <ng-container *ngIf="!isLoading">
-  <div *ngIf="notFoundError || unexpectedError" class="alert alert-danger" role="alert">
+  <div
+    *ngIf="notFoundError || unexpectedError"
+    class="alert alert-danger"
+    [class.not-found-error]="notFoundError"
+    [class.unexpected-error]="unexpectedError"
+    role="alert"
+  >
     <h2 class="alert-heading">Error fetching content</h2>
 
     <ng-container *ngIf="notFoundError">
@@ -66,12 +72,13 @@
 
       <footer *ngIf="!!article.mainImage.credit">
         <small class="text-secondary">
-          Credit: <em>{{ article.mainImage.credit }}</em>
+          Credit:
+          <em class="credit">{{ article.mainImage.credit }}</em>
         </small>
       </footer>
     </figure>
 
-    <main *ngIf="!!article.body && article.body.length > 0">
+    <main *ngIf="!!article.body && article.body.length > 0" class="body">
       <section *ngFor="let item of article.body" [innerHTML]="item"></section>
     </main>
 

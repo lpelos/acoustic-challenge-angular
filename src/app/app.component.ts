@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ArticleParams } from './core/content-service/article.service';
+import { ArticleParams } from './core/article-service/article.service';
 
 @Component({
   selector: 'app-root',

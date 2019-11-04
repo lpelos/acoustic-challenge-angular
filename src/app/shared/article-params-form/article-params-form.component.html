@@ -14,28 +14,40 @@
       on how to get this information.
     </small>
 
-    <div class="form-group mt-3">
+    <div class="content-hub-id-group form-group mt-3">
       <label for="contentHubIdInput">Content Hub ID*</label>
 
       <input
         class="form-control"
+        [class.is-invalid]="isInvalid('contentHubId')"
+        [class.is-valid]="isValid('contentHubId')"
         formControlName="contentHubId"
         id="contentHubIdInput"
         placeholder="Ex: 779181bc-40f8-4e49-bc76-7f820485e3ac"
         type="text"
       />
+
+      <div *ngIf="isInvalid('contentHubId')" class="invalid-feedback">
+        {{ errorMessage('contentHubId') }}
+      </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" aria-describedby="" role="group">
       <label for="contentIdInput">Content ID*</label>
 
       <input
-        class="form-control"
+        class="content-id-group form-control"
+        [class.is-invalid]="isInvalid('contentId')"
+        [class.is-valid]="isValid('contentId')"
         formControlName="contentId"
         id="contentIdInput"
         placeholder="Ex: fa0e68fd-deb8-4539-806a-83c8b97e692a"
         type="text"
       />
+
+      <div *ngIf="isInvalid('contentId')" class="invalid-feedback">
+        {{ errorMessage('contentId') }}
+      </div>
     </div>
   </main>
 

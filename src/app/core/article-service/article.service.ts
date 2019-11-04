@@ -32,7 +32,7 @@ export class ArticleService {
     return new Article({
       author: author.value || '',
       body: body.values || [],
-      date: date.value || null,
+      date: date.value ? new Date(date.value) : null,
       heading: heading.value || '',
       id,
       mainImage: this.articleImageFromJSON(mainImage),

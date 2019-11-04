@@ -1,11 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 interface JSONResponse {
   [key: string]: any;
 }
+
+export class AcousticContentNotFoundError extends Error { }
+export class AcousticContentUnexpectedError extends Error { }
 
 @Injectable()
 export class AcousticContentClient {
@@ -19,7 +23,16 @@ export class AcousticContentClient {
 
   contentItem(contentHubId: string, contentId: string): Observable<JSONResponse> {
     const url = this.contentItemUrl(contentHubId, contentId);
-    return this.http.get(url);
+    return this.http.get(url).pipe(
+      catchError(err => {
+        const status = err && err.status;
+
+        switch (status) {
+          case 404: return throwError(new AcousticContentNotFoundError());
+          default: return throwError(new AcousticContentUnexpectedError());
+        }
+      }),
+    );
   }
 
   contentItemUrl(contentHubId: string, contentId: string): string {
