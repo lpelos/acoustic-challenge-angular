@@ -18,7 +18,7 @@ present in the `Dockerfile.dev` and see the how to run them in the
 ## Build Docker Image
 
 ```
-docker-compose build
+$ docker-compose build
 ```
 
 ## Dev Server
@@ -26,6 +26,8 @@ docker-compose build
 ```
 $ docker-compose up app
 ```
+
+Open your browser on http://localhost:4200/
 
 ## Build App
 
